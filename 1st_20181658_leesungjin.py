@@ -65,42 +65,46 @@ class Car(object):
         self.front_steering.turn_straight()
         self.rear_wheels_drive.ready()
         
-        while(distance > 15):
-            self.rear_wheels_drive.forward_with_speed(30)
+        while(True):
             distance = self.distance_detector.get_distance()
+            time.sleep(0.1)
+            self.rear_wheels_drive.forward_with_speed(30)
             print("Distance is ", distance)
-            time.sleep(0.01)
-            
-        self.rear_wheels_drive.stop()
-        time.sleep(1)
+            time.sleep(0.1)
+            if (distance <= 15):
+                self.rear_wheels_drive.stop()
+                time.sleep(1)
+                break
         self.rear_wheels_drive.backward_with_speed(30)
         time.sleep(4)
         self.rear_wheels_drive.stop()
         time.sleep(1)
         
-        distance = self.distance_detector.get_distance()
-        while(distance > 20):
-            self.rear_wheels_drive.forward_with_speed(50)
+        while(True):
             distance = self.distance_detector.get_distance()
+            time.sleep(0.1)
+            self.rear_wheels_drive.forward_with_speed(50)
             print("Distance is ", distance)
-            time.sleep(0.01)
-        
-        self.rear_wheels_drive.stop()
-        time.sleep(1)
+            time.sleep(0.1)
+            if (distance <= 20):
+                self.rear_wheels_drive.stop()
+                time.sleep(1)
+                break
         self.rear_wheels_drive.backward_with_speed(50)
         time.sleep(4)
         self.rear_wheels_drive.stop()
         time.sleep(1)
         
-        distance = self.distance_detector.get_distance()
-        while(distance > 25):
-            self.rear_wheels_drive.forward_with_speed(70)
+        while(True):
             distance = self.distance_detector.get_distance()
+            time.sleep(0.1)
+            self.rear_wheels_drive.forward_with_speed(70)
             print("Distance is ", distance)
-            time.sleep(0.01)
-            
-        self.rear_wheels_drive.stop()
-        time.sleep(1)
+            time.sleep(0.1)
+            if (distance <= 25):
+                self.rear_wheels_drive.stop()
+                time.sleep(1)
+                break
         self.rear_wheels_drive.backward_with_speed(70)
         time.sleep(4)
         self.rear_wheels_drive.stop()
