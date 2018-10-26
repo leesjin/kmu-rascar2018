@@ -28,21 +28,21 @@ class myCar(object):
         if(self.line_detector.is_equal_status([0,0,1,0,0])):
             go.forward_with_speed(50)
         elif(self.line_detector.is_equal_status([1,0,0,0,0])):
-            self.front_wheel_drive.turn_left(35)
+            self.front_wheel_drive.turn_left(125)
         elif(self.line_detector.is_equal_status([1,1,0,0,0])):
-            self.front_wheel_drive.turn_left(30)
+            self.front_wheel_drive.turn_left(120)
         elif(self.line_detector.is_equal_status([0,1,0,0,0])):
-            self.front_wheel_drive.turn_left(10)
+            self.front_wheel_drive.turn_left(100)
         elif(self.line_detector.is_equal_status([0,1,1,0,0])):
-            self.front_wheel_drive.turn_left(5)
+            self.front_wheel_drive.turn_left(95)
         elif(self.line_detector.is_equal_status([0,0,1,1,0])):
-            self.front_wheel_drive.turn_right(5)
+            self.front_wheel_drive.turn_right(95)
         elif(self.line_detextor.is_equal_status([0,0,0,1,0])):
-            self.front_wheel_drive.turn_right(10)
+            self.front_wheel_drive.turn_right(100)
         elif(self.line_detector.is_equal_status([0,0,0,1,1])):
-            self.front_wheel_drive.turn_right(30)
+            self.front_wheel_drive.turn_right(120)
         elif(self.line_detector.is_equal_status([0,0,0,0,1])):
-            self.front_wheel_drive.turn_right(35)
+            self.front_wheel_drive.turn_right(125)
 
 if __name__ == "__main__":
     try:
