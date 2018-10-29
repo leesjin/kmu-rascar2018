@@ -24,25 +24,72 @@ class myCar(object):
     # =======================================================================
     def car_startup(self):
         # implement the assignment code here
+        self.car.accelerator.go_forward(50)
         
-        if(self.line_detector.is_equal_status([0,0,1,0,0])):
-            go.forward_with_speed(50)
-        elif(self.line_detector.is_equal_status([1,0,0,0,0])):
-            self.front_wheel_drive.turn_left(125)
-        elif(self.line_detector.is_equal_status([1,1,0,0,0])):
-            self.front_wheel_drive.turn_left(120)
-        elif(self.line_detector.is_equal_status([0,1,0,0,0])):
-            self.front_wheel_drive.turn_left(100)
-        elif(self.line_detector.is_equal_status([0,1,1,0,0])):
-            self.front_wheel_drive.turn_left(95)
-        elif(self.line_detector.is_equal_status([0,0,1,1,0])):
-            self.front_wheel_drive.turn_right(95)
-        elif(self.line_detextor.is_equal_status([0,0,0,1,0])):
-            self.front_wheel_drive.turn_right(100)
-        elif(self.line_detector.is_equal_status([0,0,0,1,1])):
-            self.front_wheel_drive.turn_right(120)
-        elif(self.line_detector.is_equal_status([0,0,0,0,1])):
-            self.front_wheel_drive.turn_right(125)
+        while(True):
+            if(self.car.line_detector.read_digital() == [0,0,1,0,0]):
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [1,0,0,0,0]):
+                self.car.steering.turn_left(60)
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [1,1,0,0,0]):
+                self.car.steering.turn_left(65)
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [0,1,0,0,0]):
+                self.car.steering.turn_left(80)
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [0,1,1,0,0]):
+                self.car.steering.turn_left(85)
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [0,0,1,1,0]):
+                self.car.steering.turn_right(95)
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [0,0,0,1,0]):
+                self.car.steering.turn_right(110)
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [0,0,0,1,1]):
+                self.car.steering.turn_right(115)
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [0,0,0,0,1]):
+                self.car.steering.turn_right(120)
+                self.car.accelerator.go_forward(50)
+            elif(self.car.line_detector.read_digital() == [0,0,0,0,0]):
+                self.car.accelerator.stop()
+                break
+           
+        self.car.accelerator.go_backward(50)
+        time.sleep(3)
+        
+        while(True):
+            if(self.car.line_detector.read_digital() == [0,0,1,0,0]):
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [1,0,0,0,0]):
+                self.car.steering.turn_left(60)
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [1,1,0,0,0]):
+                self.car.steering.turn_left(65)
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [0,1,0,0,0]):
+                self.car.steering.turn_left(80)
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [0,1,1,0,0]):
+                self.car.steering.turn_left(85)
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [0,0,1,1,0]):
+                self.car.steering.turn_right(95)
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [0,0,0,1,0]):
+                self.car.steering.turn_right(110)
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [0,0,0,1,1]):
+                self.car.steering.turn_right(115)
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [0,0,0,0,1]):
+                self.car.steering.turn_right(120)
+                self.car.accelerator.go_backward(40)
+            elif(self.car.line_detector.read_digital() == [0,0,0,0,0]):
+                self.car.accelerator.stop()
+                break
 
 if __name__ == "__main__":
     try:
