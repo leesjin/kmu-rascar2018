@@ -30,31 +30,31 @@ class myCar(object):
         while(True):
             print(self.car.line_detector.read_digital())
             if(self.car.line_detector.read_digital() == [0,0,1,0,0]):
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [1,0,0,0,0]):
                 self.car.steering.turn_left(60)
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [1,1,0,0,0]):
                 self.car.steering.turn_left(65)
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [0,1,0,0,0]):
                 self.car.steering.turn_left(80)
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [0,1,1,0,0]):
                 self.car.steering.turn_left(85)
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [0,0,1,1,0]):
                 self.car.steering.turn_right(95)
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [0,0,0,1,0]):
                 self.car.steering.turn_right(110)
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [0,0,0,1,1]):
                 self.car.steering.turn_right(115)
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [0,0,0,0,1]):
                 self.car.steering.turn_right(120)
-                self.car.accelerator.go_forward(50)
+                self.car.accelerator.go_forward(60)
             elif(self.car.line_detector.read_digital() == [0,0,0,0,0]):
                 self.car.accelerator.stop()
                 break
