@@ -16,6 +16,7 @@ class myCar(object):
         self.car = Car(car_name)
 
     def drive_parking(self):
+        
         self.car.drive_parking()
 
     # =======================================================================
@@ -24,9 +25,10 @@ class myCar(object):
     # =======================================================================
     def car_startup(self):
         # implement the assignment code here
-        self.car.accelerator.go_forward(50)
+        self.car.accelerator.go_forward(60)
         
         while(True):
+            print(self.car.line_detector.read_digital())
             if(self.car.line_detector.read_digital() == [0,0,1,0,0]):
                 self.car.accelerator.go_forward(50)
             elif(self.car.line_detector.read_digital() == [1,0,0,0,0]):
@@ -57,39 +59,7 @@ class myCar(object):
                 self.car.accelerator.stop()
                 break
            
-        self.car.accelerator.go_backward(50)
-        time.sleep(3)
-        
-        while(True):
-            if(self.car.line_detector.read_digital() == [0,0,1,0,0]):
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [1,0,0,0,0]):
-                self.car.steering.turn_left(60)
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [1,1,0,0,0]):
-                self.car.steering.turn_left(65)
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [0,1,0,0,0]):
-                self.car.steering.turn_left(80)
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [0,1,1,0,0]):
-                self.car.steering.turn_left(85)
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [0,0,1,1,0]):
-                self.car.steering.turn_right(95)
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [0,0,0,1,0]):
-                self.car.steering.turn_right(110)
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [0,0,0,1,1]):
-                self.car.steering.turn_right(115)
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [0,0,0,0,1]):
-                self.car.steering.turn_right(120)
-                self.car.accelerator.go_backward(40)
-            elif(self.car.line_detector.read_digital() == [0,0,0,0,0]):
-                self.car.accelerator.stop()
-                break
+
 
 if __name__ == "__main__":
     try:
@@ -99,4 +69,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         # when the Ctrl+C key has been pressed,
         # the moving object will be stopped
-        myCar.drive_parking()
+        myCar.drive_parking()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
