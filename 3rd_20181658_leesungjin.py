@@ -68,6 +68,9 @@ class myCar(object):
             elif(self.car.line_detector.read_digital() == [0,1,1,0,0]):
                 self.car.steering.turn_left(85)
                 self.car.accelerator.go_forward(40)
+            elif(self.car.line_detector.read_digital() == [1,1,1,0,0]):
+                self.car.steering.turn_left(87)
+                self.car.accelerator.go_forward(40)
             elif(self.car.line_detector.read_digital() == [0,0,1,1,0]):
                 self.car.steering.turn_right(95)
                 self.car.accelerator.go_forward(40)
