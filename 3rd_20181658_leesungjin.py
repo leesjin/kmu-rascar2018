@@ -28,11 +28,14 @@ class myCar(object):
         distance = self.car.distance_detector.get_distance()
         self.car.accelerator.go_forward(40)
         count = 0
-        #countstop = 0
+        print("start")
+        countstop = 0
         while(True):
-            
             print(self.car.line_detector.read_digital())
             distance = self.car.distance_detector.get_distance()
+            print(distance)
+            if distance == -1:
+                continue
             if distance <= 20:
                 count += 1
             if count >= 10:
@@ -41,9 +44,11 @@ class myCar(object):
                 self.car.accelerator.go_forward(50)
                 time.sleep(1)
                 self.car.accelerator.stop()
-                self.car.steering.turn_right(125)
+                self.car.steering.turn_right(165)
                 self.car.accelerator.go_forward(80)
                 time.sleep(1.9)
+                countstop += 1
+                print(countstop)
                 count = 0
                 while(True):
                     if(self.car.line_detector.read_digital() != [0,0,0,0,0]):
@@ -83,10 +88,13 @@ class myCar(object):
                 self.car.accelerator.go_backward(40)
                 time.sleep(0.33)
                 self.car.accelerator.stop()
-            elif (self.car.line_detector.read_digital() == [1,1,1,1,1]):
-                continue
+            elif(self.car.line_detector.read_digital() == [1,1,1,1,1]):
+                if countstop == 4:
+                    self.car.accelerator.stop()
+                    break
             else:
                 continue
+        #self.car.accelerator.stop()
                 
 if __name__ == "__main__":
     try:
