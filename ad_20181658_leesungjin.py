@@ -5,7 +5,6 @@
 # moving object to perform the project with line detector
 # this code is used for the student only
 #########################################################################
-
 from car import Car
 import RPi.GPIO as GPIO
 import time
@@ -39,22 +38,6 @@ class myCar(object):
         print("start")
         countstop = 0
         while(True):
-            rawData = self.car.color_getter.get_raw_data()
-            
-            print("R: ", rawData[0])
-            print("G: ", rawData[1])
-            print("B: ", rawData[2])
-            print("Clear: ", rawData[3])
-            print(type(rawData[1]))
-            
-        
-            if 400< rawData[0] < 800 and 300 > rawData[2]:
-                print("Red light")
-                self.car.accelerator.stop()
-                time.sleep(3)
-                self.car.accelerator.go_forward(40)
-                time.sleep(0.5)
-            #print(self.car.line_detector.read_digital())
             distance = self.car.distance_detector.get_distance()
             #print(distance)
             if distance == -1:
@@ -67,7 +50,7 @@ class myCar(object):
                 p.start(5)     # start the PWM on 5% duty cycle
                 self.car.accelerator.stop()
                 self.car.steering.turn_left(60)
-                self.car.accelerator.go_forward(45)
+                self.car.accelerator.go_forward(50)
                 p.ChangeFrequency(scale[0])
                 time.sleep(0.35)
                 p.ChangeFrequency(scale[1])
@@ -85,6 +68,33 @@ class myCar(object):
                 while(True):
                     if(self.car.line_detector.read_digital() != [0,0,0,0,0]):
                         break
+            
+            
+            rawData = self.car.color_getter.get_raw_data()
+            '''
+            print("R: ", rawData[0])
+            print("G: ", rawData[1])
+            print("B: ", rawData[2])
+            print("Clear: ", rawData[3])
+            print(type(rawData[1]))
+            '''
+            if 400 <rawData[0] < 800 and 300 > rawData[2]:
+                print("Red light")
+                self.car.accelerator.stop()
+                time.sleep(3)
+                self.car.accelerator.go_forward(40)
+                time.sleep(0.5)
+            
+            if 200> rawData[0] and 200 < rawData[1]< 300 and 300 < rawData[2] < 420:
+                print("blue light")
+                self.car.accelerator.stop()
+                time.sleep(0.3)
+                self.car.accelerator.go_backward(50)
+                time.sleep(1.5)
+                self.car.accelerator.stop()
+                time.sleep(1)
+                self.car.accelerator.go_forward(40)
+                time.sleep(0.5)
                 
             if(self.car.line_detector.read_digital() == [0,0,1,0,0]):
                 self.car.accelerator.go_forward(40)
