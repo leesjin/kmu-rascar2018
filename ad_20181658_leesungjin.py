@@ -39,7 +39,6 @@ class myCar(object):
         countstop = 0
         while(True):
             distance = self.car.distance_detector.get_distance()
-            #print(distance)
             if distance == -1:
                 continue
             if distance <= 30:
@@ -47,7 +46,7 @@ class myCar(object):
             if count >= 10:
                 countstop += 1
                 p = GPIO.PWM(buzzer_pin, 100)
-                p.start(5)     # start the PWM on 5% duty cycle
+                p.start(5)     
                 self.car.accelerator.stop()
                 self.car.steering.turn_left(60)
                 self.car.accelerator.go_forward(50)
@@ -69,15 +68,7 @@ class myCar(object):
                     if(self.car.line_detector.read_digital() != [0,0,0,0,0]):
                         break
             
-            
             rawData = self.car.color_getter.get_raw_data()
-            '''
-            print("R: ", rawData[0])
-            print("G: ", rawData[1])
-            print("B: ", rawData[2])
-            print("Clear: ", rawData[3])
-            print(type(rawData[1]))
-            '''
             if 400 <rawData[0] < 800 and 300 > rawData[2]:
                 print("Red light")
                 self.car.accelerator.stop()
@@ -103,8 +94,6 @@ class myCar(object):
                 if countstop == 1:
                     self.car.accelerator.stop()
                     break
-            elif(self.car.line_detector.read_digital() == [1,1,1,0,0]):
-                print("1101111011011")
             elif(self.car.line_detector.read_digital()[0] == 1):
                 self.car.steering.turn_left(60)
                 self.car.accelerator.go_forward(40)
